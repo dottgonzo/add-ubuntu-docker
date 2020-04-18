@@ -1,2 +1,6 @@
 ---
-# handlers file for add-ubuntu-docker
+- name: restart docker service
+  systemd:
+    state: restarted
+    daemon_reload: yes
+    name: docker

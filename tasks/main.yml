@@ -37,3 +37,19 @@
     url: "https://github.com/docker/compose/releases/download/1.25.4/docker-compose-Linux-x86_64"
     dest: /usr/local/bin/docker-compose
     mode: "0755"
+
+- name: Ensures /etc/systemd/system/docker.service.d dir exists
+  file:
+    path: "/etc/systemd/system/docker.service.d"
+    state: directory
+    recurse: yes
+
+- name: set docker overrydes
+  copy:
+    dest: /etc/systemd/system/docker.service.d/override.conf
+    content: |
+      [Service]
+      LimitMEMLOCK=infinity
+    mode: "0644"
+  notify:
+    - restart docker service
