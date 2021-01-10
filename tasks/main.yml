@@ -50,7 +50,7 @@
     content: |
       [Service]
       ExecStart=
-      ExecStart=/usr/bin/dockerd -H fd:// --dns 8.8.8.8,1.1.1.1 --containerd=/run/containerd/containerd.sock
+      ExecStart=/usr/bin/dockerd -H fd:// --dns 8.8.8.8 --dns 1.1.1.1 --containerd=/run/containerd/containerd.sock
       LimitMEMLOCK=infinity
     mode: "0644"
   notify:
