@@ -54,7 +54,7 @@
     - ansible_facts.services["containerd"] is not defined
     - withoutContainerd is not defined
 
-- name: Install Docker with containerd
+- name: Install Docker without containerd
   apt:
     name: "{{ packages }}"
     state: present
