@@ -14,7 +14,6 @@
       ]
     update_cache: yes
 
-
 - name: Add Docker APT repository
   apt_repository:
     repo: >
@@ -34,7 +33,7 @@
     packages:
       - docker-ce
       - docker-ce-cli
-      - docker-compose-plugin
+      - containerd.io
       - docker-compose-plugin
   when:
     - withoutContainerd is not defined
@@ -48,7 +47,7 @@
     packages:
       - docker-ce
       - docker-ce-cli
-      - containerd.io
+      - docker-compose-plugin
   when:
     - withoutContainerd is defined
 
