@@ -35,6 +35,7 @@
       - docker-ce
       - docker-ce-cli
       - docker-compose-plugin
+      - docker-compose-plugin
   when:
     - withoutContainerd is not defined
 
@@ -48,7 +49,6 @@
       - docker-ce
       - docker-ce-cli
       - containerd.io
-      - docker-compose-plugin
   when:
     - withoutContainerd is defined
 
