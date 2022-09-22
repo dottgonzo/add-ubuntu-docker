@@ -22,8 +22,8 @@
       {{ docker_distribution if docker_distribution is defined else ansible_distribution_release }}
       stable
 
-- name: Populate service facts
-  service_facts:
+# - name: Populate service facts
+#   service_facts:
 
 - name: Install Docker without containerd
   apt:
@@ -35,38 +35,25 @@
       - docker-ce
       - docker-ce-cli
       - docker-compose-plugin
-  when: 
-    - ansible_facts.services["containerd"] is defined
+  # when: 
+  #   - ansible_facts.services["containerd"] is defined
 
 
-- name: Install Docker with containerd
-  apt:
-    name: "{{ packages }}"
-    state: present
-    update_cache: yes
-  vars:
-    packages:
-      - docker-ce
-      - docker-ce-cli
-      - docker-compose-plugin
-      - containerd.io
-  when: 
-    - ansible_facts.services["containerd"] is not defined
-    - withoutContainerd is not defined
+# - name: Install Docker with containerd
+#   apt:
+#     name: "{{ packages }}"
+#     state: present
+#     update_cache: yes
+#   vars:
+#     packages:
+#       - docker-ce
+#       - docker-ce-cli
+#       - docker-compose-plugin
+#       - containerd.io
+#   when: 
+#     - ansible_facts.services["containerd"] is not defined
 
-- name: Install Docker without containerd
-  apt:
-    name: "{{ packages }}"
-    state: present
-    update_cache: yes
-  vars:
-    packages:
-      - docker-ce
-      - docker-ce-cli
-      - docker-compose-plugin
-  when: 
-    - ansible_facts.services["containerd"] is not defined
-    - withoutContainerd is defined
+
 
 # - name: Download compose
 #   get_url:
